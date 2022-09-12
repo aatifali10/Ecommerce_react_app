@@ -1,8 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { add } from "../store/cartSlice";
+import { useDispatch } from "react-redux";
 
 const Products = () => {
-  const [products, setProducts] = useState();
+  const dispatch = useDispatch();
+
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -12,13 +16,29 @@ const Products = () => {
 
       setProducts(data);
     };
+    fetchProducts();
   }, []);
-  return;
-  <>
-    <div>
-      <h2>Products</h2>
-    </div>
-  </>;
+
+  const handleAdd = (product) => {
+    dispatch(add(product));
+  };
+  return (
+    <>
+      <div className="product">
+        {products.map((product) => (
+          <div className="card" key={product.id}>
+            <img src={product.image} alt="" />
+            <h4>{product.title}</h4>
+            <h5>{product.price}</h5>
+            <button onClick={() => handleAdd(product)} className="btn">
+              {" "}
+              add to cart
+            </button>
+          </div>
+        ))}
+      </div>
+    </>
+  );
 };
 
 export default Products;
