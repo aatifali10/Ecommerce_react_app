@@ -4,7 +4,7 @@ import { remove } from "../store/cartSlice";
 
 const Cart = () => {
   const dispatch = useDispatch();
-  const Products = useSelector((state) => state.cart);
+  const products = useSelector((state) => state.cart);
 
   const handleRemove = (productId) => {
     dispatch(remove(productId));
@@ -14,12 +14,12 @@ const Cart = () => {
       <div>
         <h3>Cart</h3>
         <div className="cartWrapper">
-          {Products.map((product) => (
+          {products.map((product) => (
             <div className="cartCard">
               <img src={product.image} alt="" />
               <h5>{product.title}</h5>
               <h5>{product.price}</h5>
-              <button className="btn" onClick={handleRemove(product.id)}>
+              <button className="btn" onClick={() => handleRemove(product.id)}>
                 Remove
               </button>
             </div>
