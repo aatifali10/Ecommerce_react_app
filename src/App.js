@@ -1,10 +1,10 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
-import { Cart } from "./pages/Cart";
 import Navbar from "./components/Navbar";
-import "./components/style.css";
 import { Provider } from "react-redux";
 import store from "./store/store";
+import Cart from "./pages/Cart";
+import "./components/style.css";
 
 function App() {
   return (
